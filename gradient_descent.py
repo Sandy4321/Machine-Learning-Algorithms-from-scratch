@@ -6,7 +6,7 @@ import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.colors import LogNorm
 from matplotlib import cm
 
-data = np.loadtxt("ex1data2.txt", delimiter=',')
+data = np.loadtxt("ex1data1.txt", delimiter=',')
 # data.columns = ['Population', 'Profit']
 
 def feature_normalization(X):
