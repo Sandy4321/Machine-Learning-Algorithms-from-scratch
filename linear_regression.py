@@ -101,7 +101,7 @@ def plot_fig(ax, x, y, label):
     return ax.plot(x, y, label=label)
 
 
-def learning_rate_trials(X, y, theta, n, iterations, rates_to_try=[0.01, 0.02, 0.001], plot=False):
+def learning_rate_trials(X, y, theta, n, iterations, rates_to_try=[0.01, 0.02, 0.05, 0.001], plot=False):
     cost_matrix = []
 
     for rate in rates_to_try:

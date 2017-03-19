@@ -6,8 +6,12 @@ import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.colors import LogNorm
 from matplotlib import cm
 
-data = np.loadtxt("ex1data1.txt", delimiter=',')
+data = np.loadtxt("ex2data1.txt", delimiter=',')
 # data.columns = ['Population', 'Profit']
+
+
+def sigmoid(hyp):
+    return 1/(1+np.exp(-hyp))
 
 
 def feature_normalization(X):
@@ -24,9 +28,9 @@ def feature_normalization(X):
 
 def compute_cost(X, y, theta):
     m = y.shape[0]
-    hypothesis = np.dot(X.transpose(), theta)
+    hypothesis = sigmoid(np.dot(X.transpose(), theta))
     loss = hypothesis.transpose() - y
-    cost = np.sum(loss**2)/(2*m)
+    cost = np.sum(loss)/(2*m)
     return cost
 
 
@@ -102,7 +106,7 @@ def plot_fig(ax, x, y, label):
     return ax.plot(x, y, label=label)
 
 
-def learning_rate_trials(X, y, theta, n, iterations, rates_to_try=[0.01, 0.02, 0.001], plot=False):
+def learning_rate_trials(X, y, theta, n, iterations, rates_to_try=[0.01, 0.02, 0.05, 0.001], plot=False):
     cost_matrix = []
 
     for rate in rates_to_try:
@@ -150,6 +154,6 @@ X = np.vstack([np.ones(n), X_norm])
 #
 # cost_contour_plot(X, y, theta)
 
-Cost_Mat = learning_rate_trials(X, y, theta, n, 50, plot=True)
+Cost_Mat = learning_rate_trials(X, y, theta, n, 500, plot=True)
 
 theta, cost_list = gradient_descent(X, y, theta, n, iterations, alpha)
